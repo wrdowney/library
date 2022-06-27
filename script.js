@@ -43,11 +43,11 @@ const createBookCard = (book) => {
     bookCard.classList.add('book-card')
     buttonGroup.classList.add('button-group')
     removeBtn.classList.add('btn')
-    // removeBtn.onclick = removeBook
+    removeBtn.onclick = removeBook
 
     title.textContent = `"${book.title}"`
     author.textContent = book.author
-    pages.textContent = `${book.pages} pages`
+    pages.textContent = `${book.numPages} pages`
     removeBtn.textContent = 'Remove'
 
     bookCard.appendChild(title)
@@ -60,6 +60,15 @@ const createBookCard = (book) => {
 
 const resetBookGrid = () => {
     bookGrid.innerHTML = '';
+}
+
+const removeBook = (e) => {
+    const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
+        '"',
+        ''
+    )
+    myLibrary.splice(myLibrary.indexOf(e), 1);
+    updateBookGrid();
 }
 
 function addBookToLibrary(book) {
