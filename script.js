@@ -26,11 +26,40 @@ const addBook = (e) => {
 }
 
 const updateBookGrid = () => {
-
+    resetBookGrid();
+    myLibrary.forEach(b => {
+        createBookCard(b);
+    })
 }
 
-const resetBookGrid = () => {
+const createBookCard = (book) => {
+    const bookCard = document.createElement('div')
+    const title = document.createElement('p')
+    const author = document.createElement('p')
+    const pages = document.createElement('p')
+    const buttonGroup = document.createElement('div')
+    const removeBtn = document.createElement('button')
 
+    bookCard.classList.add('book-card')
+    buttonGroup.classList.add('button-group')
+    removeBtn.classList.add('btn')
+    // removeBtn.onclick = removeBook
+
+    title.textContent = `"${book.title}"`
+    author.textContent = book.author
+    pages.textContent = `${book.pages} pages`
+    removeBtn.textContent = 'Remove'
+
+    bookCard.appendChild(title)
+    bookCard.appendChild(author)
+    bookCard.appendChild(pages)
+    buttonGroup.appendChild(removeBtn)
+    bookCard.appendChild(buttonGroup)
+    bookGrid.appendChild(bookCard)
+    }
+
+const resetBookGrid = () => {
+    bookGrid.innerHTML = '';
 }
 
 function addBookToLibrary(book) {
